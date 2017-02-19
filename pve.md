@@ -127,7 +127,7 @@ player head with a skin that matches the mob. For example, witches drop the
 *MHF_Witch* player head.
 
 Some hostile mobs also drop a named, lored, enchanted ghast tear called
-‘_Essence of Flight_’, that can be crafted with a dragon head to make elytra
+‘_Essence of Flight_’, that can be crafted with a dragon head to make elytras
 (wings).
 
 The drop probabilities of these custom drops and the player skin names are
@@ -270,7 +270,7 @@ than by breeding.
 
 Most mobs have a small chance of dropping their heads when killed by a player.
 They may also drop a special item, called ‘_Essence of Flight_’, that can be
-used to craft Elytra. See `/help Custom Drops` and `/help Elytras`.
+used to craft elytras. See `/help Custom Drops` and `/help Elytras`.
 
 We have a Mumble server for voice chat. See `/help Mumble`. We also have a 
 top-down dynamic map and an isometric cartograph. See `/help Map`.
@@ -311,13 +311,14 @@ as well on a multi-player server as they would in the single player game.
 ### Help
 > How to use the help system.
 
-Example: `/help features 2` - read page 2 of the “Features” topic.
-
 * `/help` - show the topic index
 * `/help <n>` - read page _\<n\>_ of the index
-* `/help <text>` - show help about _\<text\>_. The _\<text\>_ can be a topic name
-  the name of a plugin, or a command, if it begins with a '/'.
+* `/help <text>` - show help about _\<text\>_. The _\<text\>_ can be a topic
+  title, the name of a plugin, the name of a command beginning with '/', or just
+  some arbitrary search term.
 * `/help <text> <n>` - show page _\<n\>_ of the search results for _\<text\>_.
+
+Example: `/help features 2` - read page 2 of the “Features” topic.
 
 Note: searches are case-insensitive. 
 
