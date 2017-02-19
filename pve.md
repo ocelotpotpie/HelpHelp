@@ -1,10 +1,9 @@
 rev-number: 19
+
 rev-date: 'November 11, 2016'
+
 rev-post: 'https://redd.it/5ccsa9'
 
-test:
-  a:
-     b: 'c'
 
 ====
 ## Default
