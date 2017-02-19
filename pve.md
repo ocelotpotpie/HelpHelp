@@ -158,8 +158,7 @@ You can donate to help the server at http://nerd.nu/donate.
 Doppelgangers are summonable, custom hostile mobs. In the current 
 configuration, they are extremely strong and well-armed wither skeletons. 
 They drop the player head of your choosing. To summon a doppleganger, name a 
-pumpkin after the player whose head you want, using an anvil. The name must 
-exactly match the player, including upper and lowercase letters. Then stack 
+pumpkin after the player whose head you want, using an anvil. Then stack
 two diamond blocks vertically and put the pumpkin on top, sort of like 
 summoning a snow golem. Note that you need to leave a one-block air gap on all 
 sides of the pillar of blocks.
