@@ -2,7 +2,7 @@ package nu.nerd.help;
 
 import java.util.ArrayList;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 // ----------------------------------------------------------------------------
 /**
@@ -35,13 +35,23 @@ public class Splitter {
     public static final int DEFAULT_COLUMNS = 54;
 
     // ------------------------------------------------------------------------
-
+    /**
+     * Split the input string at the default width.
+     *
+     * @param in the string to split.
+     */
     public String split(String in) {
         return split(in, DEFAULT_COLUMNS);
     }
 
     // ------------------------------------------------------------------------
-
+    /**
+     * Split the input string at the specified width.
+     *
+     * @param in the string to split.
+     * @param columns the maximum number of columns allowed in any line before
+     *        it will be split.
+     */
     public String split(String in, int columns) {
         reset();
         ArrayList<String> lines = new ArrayList<String>();
@@ -136,8 +146,12 @@ public class Splitter {
     }
 
     // ------------------------------------------------------------------------
-
-    protected int _columns = DEFAULT_COLUMNS;
+    /**
+     * Number of formatting characters encountered on the current line so far.
+     *
+     * Since formatting codes always consist of two characters, this number will
+     * always be even.
+     */
     protected int _formatCount = 0;
 
     /**
@@ -145,5 +159,9 @@ public class Splitter {
      * split.
      */
     protected int _lastBreak = 0;
+
+    /**
+     * Current line, being assembled one character at a time.
+     */
     protected StringBuilder _line = new StringBuilder();
 } // class Splitter

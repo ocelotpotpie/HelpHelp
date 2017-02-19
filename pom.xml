@@ -6,8 +6,8 @@
 	<name>HelpHelp</name>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
-    <description>Better organisation for your Bukkit help system.</description>
-    <url>https://github.com/totemo/HelpHelp</url>
+	<description>Better organisation for your Bukkit help system.</description>
+	<url>https://github.com/totemo/HelpHelp</url>
 	<scm>
 		<connection>scm:git:git://github.com/totemo/HelpHelp.git</connection>
 		<url>https://github.com/totemo/HelpHelp</url>
@@ -27,6 +27,41 @@
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
 			<version>1.10-R0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark</artifactId>
+			<version>0.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark-ext-autolink</artifactId>
+			<version>0.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark-ext-gfm-strikethrough</artifactId>
+			<version>0.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark-ext-gfm-tables</artifactId>
+			<version>0.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark-ext-heading-anchor</artifactId>
+			<version>0.8.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark-ext-ins</artifactId>
+			<version>0.8.0</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -67,5 +102,34 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.2</version>
+				<configuration>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+					<shadedClassifierName>Bundle</shadedClassifierName>
+					<artifactSet>
+						<includes>
+							<include>com.atlassian.commonmark:commonmark</include>
+							<include>com.atlassian.commonmark:commonmark-ext-autolink</include>
+							<include>com.atlassian.commonmark:commonmark-ext-gfm-strikethrough</include>
+							<include>com.atlassian.commonmark:commonmark-ext-gfm-tables</include>
+							<include>com.atlassian.commonmark:commonmark-ext-heading-anchor</include>
+							<include>com.atlassian.commonmark:commonmark-ext-ins</include>
+						</includes>
+					</artifactSet>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 </project>

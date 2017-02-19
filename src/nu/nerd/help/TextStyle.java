@@ -1,6 +1,6 @@
 package nu.nerd.help;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 // ----------------------------------------------------------------------------
 /**

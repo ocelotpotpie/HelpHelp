@@ -13,7 +13,6 @@ import org.apache.commons.io.IOUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.commonmark.Extension;
 import org.commonmark.ext.autolink.AutolinkExtension;
-import org.commonmark.ext.front.matter.YamlFrontMatterExtension;
 import org.commonmark.ext.gfm.strikethrough.StrikethroughExtension;
 import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.ext.heading.anchor.HeadingAnchorExtension;
@@ -176,8 +175,7 @@ public class HelpLoader {
                                                           StrikethroughExtension.create(),
                                                           TablesExtension.create(),
                                                           HeadingAnchorExtension.create(),
-                                                          InsExtension.create(),
-                                                          YamlFrontMatterExtension.create());
+                                                          InsExtension.create());
 
     /**
      * The substitutions from variable names to values.
