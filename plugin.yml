@@ -1,0 +1,27 @@
+name: HelpHelp
+version: 0.1.0
+author: totemo
+authors: [totemo]
+description: Better organisation for your Bukkit-compatible help system.
+website: http://github.com/totemo/HelpHelp
+main: io.totemo.help.HelpHelp
+permissions:
+  helphelp.admin:
+    description: Permission to administer the plugin.
+    default: op
+  helphelp.faq:
+    description: Permission to look up FAQs.
+    default: op
+commands:
+  helphelp:
+    description: Plugin administration command.
+    permission: helphelp.admin
+    usage: |
+      /<command> reload: Reload the configuration.
+      /<command> dump: Dump all help topics to a file in the plugin directory.
+  faq:
+    description: Answer Frequently-Asked Questions (FAQs).
+    permission: helphelp.faq
+    usage: |
+      /<command> <word>: Search for topics relating to <word> in the FAQ section.
+

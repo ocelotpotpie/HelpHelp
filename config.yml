@@ -1,0 +1,7 @@
+boiler-plate:
+  command-topics-in-master-index: false
+  ignore-plugins: []
+  amended-topics:
+    Aliases:
+      shortText: '&a<text>.&f'
+
