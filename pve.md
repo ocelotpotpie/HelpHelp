@@ -4,11 +4,9 @@ rev-date: 'November 11, 2016'
 
 rev-post: 'https://redd.it/5ccsa9'
 
-
 ====
 ## Default
 > Use `/help help` to learn about the help system.
-> This help is also available in your browser at http://nerd.nu/help/pve/.
 
 * PvE
 * Creative
@@ -34,7 +32,10 @@ rev-post: 'https://redd.it/5ccsa9'
 * Beds
 * Spawn
 * Custom Drops
+* Doppelgangers
 * Elytras
+* Horses
+* Minecarts
 * MapWorld
 * Teleports
 * Lag
@@ -119,7 +120,20 @@ For now, try `/help Plugins` or `/help <command>`.
 ### Custom Drops
 > Custom items dropped by mobs.
 
-TBA.
+Many hostile and passive mobs have a small chance of dropping their head when
+killed. If Minecraft has a standard head for the mob (the dragon, skeletons,
+zombies and creepers) then that item will be dropped. Otherwise, it will be a
+player head with a skin that matches the mob. For example, witches drop the
+*MHF_Witch* player head.
+
+Some hostile mobs also drop a named, lored, enchanted ghast tear called
+‘_Essence of Flight_’, that can be crafted with a dragon head to make elytra
+(wings).
+
+The drop probabilities of these custom drops and the player skin names are
+listed in the configuration of the GoneBatty plugin, at http://goo.gl/mJpFqy.
+
+See also: `/help Elytras`.
 
 
 ### Discord
@@ -150,11 +164,26 @@ two diamond blocks vertically and put the pumpkin on top, sort of like
 summoning a snow golem. Note that you need to leave a one-block air gap on all 
 sides of the pillar of blocks.
 
+The PvE server admins (P admins or Padmins) have special doppelgangers that
+are twice as expensive as regular players' doppelgangers. To summon a Padmin
+doppelganger, you must place the named pumpkin on a T shape built from four
+diamond blocks, instead of two. Padmin doppelgangers are even stronger than
+regular doppelgangers, always appear as a group of all current Padmins when
+you summon any one of them, and the summoned Padmin drops a dragon head in
+addition to the Padmin's head. You can find a current list of Padmins on the
+NerdNu staff page at http://nerd.nu/staff.
+
 
 ### Elytras
 > How to get elytras.
 
-TBA.
+Elytras (wings) occur naturally in end cities, but as there are only a limited
+number of those and a lot of players on PvE, we also allow them to be crafted.
+To craft elytras, combine one _Essence of Flight_ and one dragon head in your
+crafting square. Both of these items can be obtained, with a high probability,
+by killing the dragon. Alternatively, you can get _Essence of Flight_ as a
+random drop from killing hostile mobs (see `/help Custom Drops`) and you can
+get a dragon head from killing a P admin doppelganger (see `/help Doppelgangers`).
 
 
 ### Farms
@@ -165,7 +194,7 @@ crops, you must replant. Not replanting can result in a ban.
  
 If you come across an un-replanted field, ModReq it for crop grief.
 
-    
+
 ### FAQ
 > Frequently-Asked Questions
 
@@ -403,7 +432,7 @@ but you can change who can access them using the following commands:
  * `/lwc` - See a list of other commands related to locking. 
 
 It is your responsibility to secure your valuables. If someone takes something
-from a chest you gave them access to, we can not return them.
+from a chest you gave them access to, we can not return it.
 
 See also `/help LWC`.
 
@@ -433,6 +462,26 @@ https://redd.it/4bp8ti. To return to the center of the MapWorld, type `/spawn`.
 There is a warp sign there that will return you to the overworld.
 
 All normal server rules apply in MapWorld, including no NSFW builds.
+
+
+### Minecarts
+> Fast minecarts on PvE
+
+Minecarts on PvE run at up to double vanilla Minecraft minecart speed, thanks
+to the HyperCarts plugin (https://github.com/NerdNu/HyperCarts). In order to
+boost a minecart to its theoretical maximum speed, you may need to lay powered
+rails considerably closer together than you would in vanilla Minecraft. If you
+don't care about speed, the standard rail designs you used in vanilla will work
+just fine.
+
+If you have problems (with lag or minecart physics acting up) you can set a
+personal speed limit for minecarts that you ride in. Use `/cart-speed 0.4` to
+set your personal speed limit to normal, vanilla speed. Use `/cart-speed 0.8`
+to set the speed limit to the server-wide maximum. Or specify some other number
+for an in-between speed. Your personal speed limit is saved forever. You can
+check your current speed limit with `/cart-speed`.
+
+Chest and hopper carts always run at the maximum speed configured server-wide.
 
 
 ### ModReqs
