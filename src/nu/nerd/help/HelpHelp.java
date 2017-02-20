@@ -84,9 +84,17 @@ public class HelpHelp extends JavaPlugin {
      */
     protected void dumpTopics(CommandSender sender) {
         YamlConfiguration output = new YamlConfiguration();
-        ConfigurationSection topics = output.createSection("topics");
-        ConfigurationSection indices = output.createSection("indices");
+        ConfigurationSection topics = output.createSection("general-topics");
+        ConfigurationSection indices = output.createSection("index-topics");
 
+        HelpTopic defaultTopic = Bukkit.getServer().getHelpMap().getHelpTopic("");
+        if (defaultTopic != null) {
+            if (defaultTopic instanceof IndexHelpTopic) {
+                dumpIndexHelpTopic(indices, (IndexHelpTopic) defaultTopic, sender);
+            } else {
+                dumpHelpTopic(topics, defaultTopic);
+            }
+        }
         for (HelpTopic topic : Bukkit.getServer().getHelpMap().getHelpTopics()) {
             if (topic instanceof IndexHelpTopic) {
                 dumpIndexHelpTopic(indices, (IndexHelpTopic) topic, sender);
