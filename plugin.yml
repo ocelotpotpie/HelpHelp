@@ -1,10 +1,10 @@
-name: HelpHelp
-version: 0.1.0
+name: ${project.name}
+version: ${project.version}
 author: totemo
-authors: [totemo]
-description: Better organisation for your Bukkit-compatible help system.
-website: http://github.com/totemo/HelpHelp
-main: io.totemo.help.HelpHelp
+authors: []
+description: ${project.description}
+website: ${project.url}
+main: nu.nerd.help.HelpHelp
 permissions:
   helphelp.admin:
     description: Permission to administer the plugin.
