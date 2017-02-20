@@ -52,7 +52,7 @@ public class HelpHelp extends JavaPlugin {
         } else if (command.getName().equals("help-reload")) {
             if (args.length == 0) {
                 reloadHelp(sender);
-                // TODO: Implement configuration reloading.
+                reloadConfig();
                 return true;
             } else {
                 return false;
