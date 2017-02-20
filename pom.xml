@@ -39,6 +39,11 @@
 			<version>0.8.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.nibor.autolink</groupId>
+			<artifactId>autolink</artifactId>
+			<version>0.6.0</version>
+		</dependency>
+		<dependency>
 			<groupId>com.atlassian.commonmark</groupId>
 			<artifactId>commonmark-ext-autolink</artifactId>
 			<version>0.8.0</version>
@@ -113,6 +118,7 @@
 					<artifactSet>
 						<includes>
 							<include>com.atlassian.commonmark:commonmark</include>
+							<include>org.nibor.autolink:autolink</include>
 							<include>com.atlassian.commonmark:commonmark-ext-autolink</include>
 							<include>com.atlassian.commonmark:commonmark-ext-gfm-strikethrough</include>
 							<include>com.atlassian.commonmark:commonmark-ext-gfm-tables</include>
