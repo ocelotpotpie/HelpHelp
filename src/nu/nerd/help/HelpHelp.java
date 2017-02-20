@@ -100,26 +100,46 @@ public class HelpHelp extends JavaPlugin {
      * @param uri the URI as a string; generally a remote file URL.
      */
     protected void loadHelp(CommandSender sender, String uri) {
-        try {
-            MessageSink sink = s -> sender.sendMessage(ChatColor.RED + s);
-            HelpLoader loader = new HelpLoader();
-            loader.loadURI(uri, sink);
+        Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
+            @Override
+            public void run() {
+                String errorMessage = null;
+                try {
+                    MessageSink sink = s -> sender.sendMessage(ChatColor.RED + s);
+                    HelpLoader loader = new HelpLoader();
+                    loader.loadURI(uri);
 
-            YamlConfiguration output = new YamlConfiguration();
-            HelpRenderer help = new HelpRenderer();
-            help.renderBoilerPlate(output, getConfig());
-            help.renderIndexTopics(output, loader, sink);
-            help.renderGeneralTopics(output, loader, sink);
+                    YamlConfiguration output = new YamlConfiguration();
+                    HelpRenderer help = new HelpRenderer();
+                    help.renderBoilerPlate(output, getConfig());
+                    help.renderIndexTopics(output, loader, sink);
+                    help.renderGeneralTopics(output, loader, sink);
 
-            output.save(new File("help.yml"));
-            reloadHelp(sender);
-        } catch (URISyntaxException | MalformedURLException ex) {
-            sender.sendMessage(ChatColor.RED + "Error loading help: malformed URL: " + ex.getMessage());
-        } catch (InvalidConfigurationException ex) {
-            sender.sendMessage(ChatColor.RED + "Error loading help: the YAML substitution section is malformed: " + ex.getMessage());
-        } catch (IllegalArgumentException | IOException ex) {
-            sender.sendMessage(ChatColor.RED + "Error loading help: " + ex.getMessage());
-        }
+                    output.save(new File("help.yml"));
+                    Bukkit.getScheduler().runTask(HelpHelp.this, new Runnable() {
+                        @Override
+                        public void run() {
+                            reloadHelp(sender);
+                        }
+                    });
+                } catch (URISyntaxException | MalformedURLException ex) {
+                    errorMessage = ChatColor.RED + "Error loading help: malformed URL: " + ex.getMessage();
+                } catch (InvalidConfigurationException ex) {
+                    errorMessage = ChatColor.RED + "Error loading help: the YAML substitution section is malformed: " + ex.getMessage();
+                } catch (IllegalArgumentException | IOException ex) {
+                    errorMessage = ChatColor.RED + "Error loading help: " + ex.getMessage();
+                }
+                if (errorMessage != null) {
+                    final String finalMessage = errorMessage;
+                    Bukkit.getScheduler().runTask(HelpHelp.this, new Runnable() {
+                        @Override
+                        public void run() {
+                            sender.sendMessage(finalMessage);
+                        }
+                    });
+                }
+            }
+        });
     }
 
     // ------------------------------------------------------------------------

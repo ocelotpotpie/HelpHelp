@@ -47,7 +47,7 @@ public class HelpRenderer {
     public static void main(String[] args) throws Exception {
         MessageSink sink = s -> System.out.println(s);
         HelpLoader loader = new HelpLoader();
-        loader.loadURI("file:pve.md", sink);
+        loader.loadURI("file:pve.md");
 
         YamlConfiguration config = new YamlConfiguration();
         config.load(new File("config.yml"));

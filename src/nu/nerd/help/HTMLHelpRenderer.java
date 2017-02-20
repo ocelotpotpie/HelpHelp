@@ -18,7 +18,7 @@ public class HTMLHelpRenderer {
     public static void main(String[] args) throws Exception {
         MessageSink sink = s -> System.out.println(s);
         HelpLoader loader = new HelpLoader();
-        loader.loadURI("file:pve.md", sink);
+        loader.loadURI("file:pve.md");
 
         renderHTML(new File("index.html"), loader);
     }

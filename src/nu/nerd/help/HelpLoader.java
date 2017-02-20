@@ -36,7 +36,7 @@ public class HelpLoader {
     public static void main(String[] args) throws Exception {
         MessageSink sink = s -> System.out.println(s);
         HelpLoader loader = new HelpLoader();
-        loader.loadURI("file:pve.md", sink);
+        loader.loadURI("file:pve.md");
 
         for (Entry<String, Object> entry : loader.getSubstitutions().entrySet()) {
             System.out.println(entry.getKey() + " = " + entry.getValue());
@@ -53,13 +53,12 @@ public class HelpLoader {
      * Load help from the specified URI.
      * 
      * @param path the URI.
-     * @param sink used to log errors.
      * @throws InvalidConfigurationException
      * @throws IOException
      * @throws MalformedURLException
      * @throws URISyntaxException
      */
-    public void loadURI(String path, MessageSink sink)
+    public void loadURI(String path)
     throws InvalidConfigurationException, MalformedURLException,
     IOException, URISyntaxException {
         URI uri = new URI(path);
@@ -68,8 +67,7 @@ public class HelpLoader {
         String text = IOUtils.toString(connection.getInputStream());
         String[] sections = text.replace("\r", "").split("\n===+\n");
         if (sections.length != 3) {
-            sink.message("The input must be divided into 3 sections by ==== on a line by itself.");
-            return;
+            throw new IOException("The input must be divided into 3 sections by === on a line by itself.");
         }
 
         YamlConfiguration settings = new YamlConfiguration();
