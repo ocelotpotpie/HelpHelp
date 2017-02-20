@@ -7,22 +7,22 @@ website: ${project.url}
 main: nu.nerd.help.HelpHelp
 permissions:
   helphelp.dump:
-    description: Permission to dump the help topics.
+    description: Permission to use /help-dump.
     default: op
   helphelp.reload:
-    description: Permission to reload help topics and the configuration.
+    description: Permission to use /help-reload.
     default: op
   helphelp.load:
-    description: Permission to load help topics from a remote Markdown file.
+    description: Permission to use /help-load.
     default: op
 
 commands:
   help-dump:
-    description: Dump help to a file in the configuration directory.
+    description: Dump help topics to a file in the configuration directory.
     permission: helphelp.dump
     usage: |
     
-      §e/<command> <url>§f - Dump help to a file in the configuration directory.
+      §e/<command> <url>§f - Dump help topics to a file in the configuration directory.
 
   help-reload:
     description: Reload the help topics and configuration from disk.
@@ -32,7 +32,7 @@ commands:
       §e/<command>§f - Reload the help topics and configuration from disk.
 
   help-load:
-    description: Load help from the help file on disk.
+    description: Load help from a remote Markdown file.
     permission: helphelp.load
     usage: |
     
