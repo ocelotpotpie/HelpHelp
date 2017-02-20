@@ -6,6 +6,7 @@ rev-post: 'https://redd.it/5ccsa9'
 
 ====
 ## Default
+`bukkit.command.help`
 > Use `/help help` to learn about the help system.
 
 * PvE
