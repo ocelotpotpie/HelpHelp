@@ -1,6 +1,9 @@
 package nu.nerd.help;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URLConnection;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.commonmark.Extension;
 import org.commonmark.ext.autolink.AutolinkExtension;
@@ -42,7 +46,6 @@ public class HelpLoader {
         System.out.println(loader.getIndexSectionMarkup());
         System.out.println("--------");
         System.out.println(loader.getTopicSectionMarkup());
-
     }
 
     // ------------------------------------------------------------------------
@@ -51,12 +54,19 @@ public class HelpLoader {
      * 
      * @param path the URI.
      * @param sink used to log errors.
+     * @throws InvalidConfigurationException
+     * @throws IOException
+     * @throws MalformedURLException
+     * @throws URISyntaxException
      */
-    public void loadURI(String path, MessageSink sink) throws Exception {
+    public void loadURI(String path, MessageSink sink)
+    throws InvalidConfigurationException, MalformedURLException,
+    IOException, URISyntaxException {
         URI uri = new URI(path);
         URLConnection connection = uri.toURL().openConnection();
 
-        String[] sections = IOUtils.toString(connection.getInputStream()).split("\n===+\n");
+        String text = IOUtils.toString(connection.getInputStream());
+        String[] sections = text.replace("\r", "").split("\n===+\n");
         if (sections.length != 3) {
             sink.message("The input must be divided into 3 sections by ==== on a line by itself.");
             return;
