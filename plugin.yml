@@ -6,22 +6,35 @@ description: ${project.description}
 website: ${project.url}
 main: nu.nerd.help.HelpHelp
 permissions:
-  helphelp.admin:
-    description: Permission to administer the plugin.
+  helphelp.dump:
+    description: Permission to dump the help topics.
     default: op
-  helphelp.faq:
-    description: Permission to look up FAQs.
+  helphelp.reload:
+    description: Permission to reload help topics and the configuration.
     default: op
+  helphelp.load:
+    description: Permission to load help topics from a remote Markdown file.
+    default: op
+
 commands:
-  helphelp:
-    description: Plugin administration command.
-    permission: helphelp.admin
+  help-dump:
+    description: Dump help to a file in the configuration directory.
+    permission: helphelp.dump
     usage: |
-      /<command> reload: Reload the configuration.
-      /<command> dump: Dump all help topics to a file in the plugin directory.
-  faq:
-    description: Answer Frequently-Asked Questions (FAQs).
-    permission: helphelp.faq
+    
+      §e/<command> <url>§f - Dump help to a file in the configuration directory.
+
+  help-reload:
+    description: Reload the help topics and configuration from disk.
+    permission: helphelp.reload
     usage: |
-      /<command> <word>: Search for topics relating to <word> in the FAQ section.
+    
+      §e/<command>§f - Reload the help topics and configuration from disk.
+
+  help-load:
+    description: Load help from the help file on disk.
+    permission: helphelp.load
+    usage: |
+    
+      §e/<command> <url>§f - Load help from a remote Markdown file.
 
