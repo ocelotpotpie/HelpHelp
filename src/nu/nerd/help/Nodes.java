@@ -23,7 +23,7 @@ public class Nodes {
         System.out.println("--------");
         Nodes.dumpNode(loader.getTopicSectionNode());
 
-        ArrayList<ArrayList<Node>> indexTopics = Nodes.getTopicNodes(loader.getIndexSectionNode());
+        ArrayList<ArrayList<Node>> indexTopics = Nodes.getTopicNodes(loader.getIndexSectionNode(), 0);
         for (ArrayList<Node> topic : indexTopics) {
             Heading heading = (Heading) topic.get(0);
             System.out.println(firstChildByType(heading, Text.class).getLiteral());
@@ -38,18 +38,23 @@ public class Nodes {
      * Heading at the start of the topic.
      * 
      * @param root the root Node of the section.
+     * @param level the expected heading level of the headings beginning the
+     *        topics, or 0 for any heading level.
      * @return an array of arrays of Nodes.
      */
-    public static ArrayList<ArrayList<Node>> getTopicNodes(Node root) {
+    public static ArrayList<ArrayList<Node>> getTopicNodes(Node root, int level) {
         ArrayList<ArrayList<Node>> allTopics = new ArrayList<ArrayList<Node>>();
         ArrayList<Node> topic = new ArrayList<Node>();
         Node node = root.getFirstChild();
         while (node != null) {
             if (node instanceof Heading) {
-                if (!topic.isEmpty()) {
-                    allTopics.add(topic);
+                Heading heading = (Heading) node;
+                if (level == 0 || heading.getLevel() == level) {
+                    if (!topic.isEmpty()) {
+                        allTopics.add(topic);
+                    }
+                    topic = new ArrayList<Node>();
                 }
-                topic = new ArrayList<Node>();
             }
             topic.add(node);
             node = node.getNext();

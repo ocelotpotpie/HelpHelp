@@ -114,9 +114,17 @@ For example:
 ```
 
 ### Headings
-Currently headings are assumed to mark the start of a new (general or index)
-topic. Consequently, you cannot use headings as formatting *within* a topic.
-This may change in a later version of `HelpHelp`.
+In the general topics section, the heading level of the first general topic
+defines the level of all topic headings in the section. For example, if the
+first topic heading is level 3 (begins with `###` in Markdown) then any
+subsequent level 3 heading is considered to mark the start of a new general
+topic. This means that deeper heading levels, e.g. level 4 ('#### Title'),
+start sub-sections within a topic.
+
+In the index topics section of the Markdown markup, all heading levels are
+considered to begin a new index topic. Consequently, it is not possible to
+nest multiple headings within an index topic.
+
 
 ### Markdown
 

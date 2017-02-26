@@ -21,6 +21,7 @@ import org.commonmark.ext.gfm.strikethrough.StrikethroughExtension;
 import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.ext.heading.anchor.HeadingAnchorExtension;
 import org.commonmark.ext.ins.InsExtension;
+import org.commonmark.node.Heading;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -133,6 +134,20 @@ public class HelpLoader {
      */
     public Node getTopicSectionNode() {
         return _topicSectionNode;
+    }
+
+    // ------------------------------------------------------------------------
+    /**
+     * Return the heading level of the first heading in the topics section.
+     *
+     * It is assumed that the topics all have the same heading level, and
+     * therefore subheadings of a topic will have a higher level.
+     *
+     * @return the heading level of the first heading in the topics section.
+     */
+    public int getTopicHeadingLevel() {
+        Heading firstHeading = Nodes.firstChildByType(getTopicSectionNode(), Heading.class);
+        return firstHeading != null ? firstHeading.getLevel() : 1;
     }
 
     // ------------------------------------------------------------------------

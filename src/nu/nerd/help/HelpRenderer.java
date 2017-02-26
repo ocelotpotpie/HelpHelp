@@ -18,6 +18,7 @@ import org.commonmark.node.BulletList;
 import org.commonmark.node.Code;
 import org.commonmark.node.Emphasis;
 import org.commonmark.node.HardLineBreak;
+import org.commonmark.node.Heading;
 import org.commonmark.node.Link;
 import org.commonmark.node.ListItem;
 import org.commonmark.node.Node;
@@ -41,6 +42,13 @@ public class HelpRenderer {
     static final TextStyle STRIKETHROUGH_STYLE = new TextStyle("&m");
     static final TextStyle UNDERLINE_STYLE = new TextStyle("&n");
     static final TextStyle ITALICS_STYLE = new TextStyle("&o");
+    static final TextStyle HEADING_STYLES[] = {
+        new TextStyle("&a&o"),
+        new TextStyle("&a&o"),
+        new TextStyle("&a&o"),
+        new TextStyle("&6&n"),
+        new TextStyle("&6&o")
+    };
 
     // ------------------------------------------------------------------------
 
@@ -103,7 +111,7 @@ public class HelpRenderer {
         ConfigurationSection indexTopicsSection = output.createSection("index-topics");
         Splitter splitter = new Splitter();
 
-        for (ArrayList<Node> topic : Nodes.getTopicNodes(loader.getIndexSectionNode())) {
+        for (ArrayList<Node> topic : Nodes.getTopicNodes(loader.getIndexSectionNode(), 0)) {
             Node headingNode = Nodes.take(topic);
             Text text = Nodes.firstChildByType(headingNode, Text.class);
             String topicName = text.getLiteral();
@@ -140,7 +148,6 @@ public class HelpRenderer {
                 sink.message("In index topic " + topicName +
                              " we were expecting a bullet list but instead got " +
                              (node != null ? node.getClass().getName() : "nothing") + ".");
-
             }
         }
     } // renderIndexTopics
@@ -158,7 +165,7 @@ public class HelpRenderer {
         ConfigurationSection indexTopicsSection = output.createSection("general-topics");
         Splitter splitter = new Splitter();
 
-        for (ArrayList<Node> topic : Nodes.getTopicNodes(loader.getTopicSectionNode())) {
+        for (ArrayList<Node> topic : Nodes.getTopicNodes(loader.getTopicSectionNode(), loader.getTopicHeadingLevel())) {
             Node headingNode = Nodes.take(topic);
             Text text = Nodes.firstChildByType(headingNode, Text.class);
             String topicName = text.getLiteral();
@@ -296,6 +303,14 @@ public class HelpRenderer {
                 _currentOrderedListIndex.put(list, ++number);
             }
             renderChildren(s, stack, node);
+        } else if (node instanceof Heading) {
+            Heading heading = (Heading) node;
+            int level = Math.min(heading.getLevel(), HEADING_STYLES.length);
+            stack.combine(HEADING_STYLES[level - 1]);
+            s.append('\n');
+            renderChildren(s, stack, node);
+            s.append('\n');
+            stack.pop();
         } else {
             renderChildren(s, stack, node);
         }
