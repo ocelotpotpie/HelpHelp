@@ -34,23 +34,6 @@ import org.commonmark.node.Text;
  */
 public class HelpRenderer {
     // ------------------------------------------------------------------------
-    // TODO: make these styles configuration settings.
-    static final TextStyle QUOTE_STYLE = new TextStyle("&a&o");
-    static final TextStyle CODE_STYLE = new TextStyle("&e&o");
-    static final TextStyle LINK_STYLE = new TextStyle("&b");
-    static final TextStyle BOLD_STYLE = new TextStyle("&e&l");
-    static final TextStyle STRIKETHROUGH_STYLE = new TextStyle("&m");
-    static final TextStyle UNDERLINE_STYLE = new TextStyle("&n");
-    static final TextStyle ITALICS_STYLE = new TextStyle("&o");
-    static final TextStyle HEADING_STYLES[] = {
-        new TextStyle("&a&o"),
-        new TextStyle("&a&o"),
-        new TextStyle("&a&o"),
-        new TextStyle("&6&n"),
-        new TextStyle("&6&o")
-    };
-
-    // ------------------------------------------------------------------------
 
     public static void main(String[] args) throws Exception {
         MessageSink sink = s -> System.out.println(s);
@@ -252,39 +235,39 @@ public class HelpRenderer {
             s.append('\n');
 
         } else if (node instanceof BlockQuote) {
-            stack.combine(QUOTE_STYLE);
+            stack.combine(HelpHelp.CONFIG.QUOTE_STYLE);
             renderChildren(s, stack, node);
             stack.pop();
 
         } else if (node instanceof Code) {
-            stack.combine(CODE_STYLE);
+            stack.combine(HelpHelp.CONFIG.CODE_STYLE);
             s.append(stack.asFormatCodes());
             s.append(((Code) node).getLiteral());
             stack.pop();
 
         } else if (node instanceof Link) {
-            stack.combine(LINK_STYLE);
+            stack.combine(HelpHelp.CONFIG.LINK_STYLE);
             s.append(stack.asFormatCodes());
             s.append(((Link) node).getDestination());
             stack.pop();
 
         } else if (node instanceof Emphasis) {
-            stack.combine(ITALICS_STYLE);
+            stack.combine(HelpHelp.CONFIG.ITALICS_STYLE);
             renderChildren(s, stack, node);
             stack.pop();
 
         } else if (node instanceof StrongEmphasis) {
-            stack.combine(BOLD_STYLE);
+            stack.combine(HelpHelp.CONFIG.BOLD_STYLE);
             renderChildren(s, stack, node);
             stack.pop();
 
         } else if (node instanceof Ins) {
-            stack.combine(UNDERLINE_STYLE);
+            stack.combine(HelpHelp.CONFIG.UNDERLINE_STYLE);
             renderChildren(s, stack, node);
             stack.pop();
 
         } else if (node instanceof Strikethrough) {
-            stack.combine(STRIKETHROUGH_STYLE);
+            stack.combine(HelpHelp.CONFIG.STRIKETHROUGH_STYLE);
             renderChildren(s, stack, node);
             stack.pop();
 
@@ -305,8 +288,7 @@ public class HelpRenderer {
             renderChildren(s, stack, node);
         } else if (node instanceof Heading) {
             Heading heading = (Heading) node;
-            int level = Math.min(heading.getLevel(), HEADING_STYLES.length);
-            stack.combine(HEADING_STYLES[level - 1]);
+            stack.combine(HelpHelp.CONFIG.getHeadingStyle(heading.getLevel()));
             s.append('\n');
             renderChildren(s, stack, node);
             s.append('\n');

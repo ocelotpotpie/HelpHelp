@@ -5,3 +5,19 @@ boiler-plate:
     Aliases:
       shortText: '&a<text>.&f'
 
+output-file: index.html
+
+style:
+  quote: '&a&o'
+  code: '&e&o'
+  link: '&b'
+  bold: '&e&l'
+  strikethrough: '&m'
+  underline: '&n'
+  italics: '&o'
+  headings:
+  - '&c&o'
+  - '&d&o'
+  - '&a&o'
+  - '&6&o'
+  - '&d&o'

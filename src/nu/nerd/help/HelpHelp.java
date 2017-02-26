@@ -27,11 +27,24 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class HelpHelp extends JavaPlugin {
     // ------------------------------------------------------------------------
     /**
+     * This plugin as a singleton.
+     */
+    public static HelpHelp PLUGIN;
+
+    /**
+     * The Configuration as a singleton.
+     */
+    public static Configuration CONFIG = new Configuration();
+
+    // ------------------------------------------------------------------------
+    /**
      * Plugin initialisation.
      */
     @Override
     public void onEnable() {
+        PLUGIN = this;
         saveDefaultConfig();
+        CONFIG.reload();
     }
 
     // ------------------------------------------------------------------------
@@ -52,7 +65,7 @@ public class HelpHelp extends JavaPlugin {
         } else if (command.getName().equals("help-reload")) {
             if (args.length == 0) {
                 reloadHelp(sender);
-                reloadConfig();
+                CONFIG.reload();
                 return true;
             } else {
                 return false;
