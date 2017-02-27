@@ -1,3 +1,5 @@
+server: PvE
+
 rev-number: 19
 
 rev-date: 'November 11, 2016'
@@ -7,7 +9,7 @@ rev-post: 'https://redd.it/5ccsa9'
 ====
 ## Default
 `bukkit.command.help`
-> Use `/help help` to learn about the help system.
+> Use `/help help` to learn about the help system. Read this help in your web browser at http://nerd.nu/help/pve.
 
 * PvE
 * Creative
@@ -198,53 +200,53 @@ If you come across an un-replanted field, ModReq it for crop grief.
 ### FAQ
 > Frequently-Asked Questions
 
-> Why doesn’t my water/lava flow?
+#### Why doesn’t my water/lava flow?
 
 To prevent grief. You can make it flow with `/modreq flow`. See `/help Liquids`.
 
-> Why can’t I open my chest/door/whatever?
+#### Why can’t I open my chest/door/whatever?
 
 You may be holding a wooden sword, which queries the WorldGuard region of 
 whatever you click on. Alternatively, maybe the chest is locked by someone
 else? See `/help Locks`.
 
-> Why isn't my hopper working?
+#### Why isn't my hopper working?
 
 Run `/chopper on` and then punch the container (e.g. chest, furnace) that the
 hopper is feeding into. That will probably fix it. 
 
-> Why can’t I build here?
+#### Why can’t I build here?
 
 You're in a protection region. See `/help Protection`. You may even still be
 at spawn. Move further away and you will find unbuilt land.
 
-> How can I join a town?
+#### How can I join a town?
 
 Towns usually have a protection region that is the same as their name.
  
 Try `/region info <town>`, and then contact one of the players listed as a
 region owner.
 
-> What are the towns called?
+#### What are the towns called?
 
 Most towns have an associated _place_. See `/help Places`.
 
-> Why can’t I light a portal?
+#### Why can’t I light a portal?
 
 Portals connect up weirdly in Minecraft when they are too close together. 
 The admins pre-make a small number of portals when they build the map. 
 See `/help Portals`.
 
-> Can I get a teleport to _wherever_?
+#### Can I get a teleport to _wherever_?
 
 Nope, sorry. Walk, ride a vehicle or use a portal instead.
 
-> Why does the server restart (so often)?
+#### Why does the server restart (so often)?
 
 Minecraft and its plugins just run better when restarted every few hours. 
 See `/help Restarts`.
 
-> When is the next rev?
+#### When is the next rev?
 
 See `/help Revisions`.
 
@@ -757,24 +759,24 @@ See `/help Liquids`.
 > Find us on the web.
 
 ++PvE Links++:
-* http://nerd.nu/help/pve/ - this help text in your web browser
-* http://nerd.nu/maps/pve/ - current isometric cartograph
-* http://wiki.nerd.nu/carto/pve/ - cartographs of past revs
+* http://nerd.nu/help/pve - this help text in your web browser
+* http://nerd.nu/maps/pve - current isometric cartograph
+* http://wiki.nerd.nu/carto/pve - cartographs of past revs
 * http://nerd.nu/maps/pve/live - current top-down live map
 * http://nerd.nu/modreq/pve.pl - check your ModReqs
 
 ++General Links++:
 * http://nerd.nu - main site
-* http://nerd.nu/forums/ - discussion forums
-* http://nerd.nu/modreq/ - check your ModReqs
-* http://nerd.nu/staff/ - staff list
-* http://nerd.nu/logs/ - chat logs
-* http://nerd.nu/donate/ - support us financially
-* http://nerd.nu/appeal/ - appeal a ban here
-* http://reddit.com/r/mcpublic/ - our subreddit
+* http://nerd.nu/forums - discussion forums
+* http://nerd.nu/modreq - check your ModReqs
+* http://nerd.nu/staff - staff list
+* http://nerd.nu/logs - chat logs
+* http://nerd.nu/donate - support us financially
+* http://nerd.nu/appeal - appeal a ban here
+* http://reddit.com/r/mcpublic - our subreddit
 * http://wiki.nerd.nu - our wiki
 * http://mcp-dl.com - download maps from past revisions
-* https://github.com/NerdNu/ - our open-source plugins
+* https://github.com/NerdNu - our open-source plugins
 
 See also: `/help Mumble`, `/help Discord`, `/help Steam`, `/help Twitter`.
 
