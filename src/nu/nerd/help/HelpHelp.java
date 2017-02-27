@@ -117,8 +117,17 @@ public class HelpHelp extends JavaPlugin {
             @Override
             public void run() {
                 String errorMessage = null;
+
+                // Generate in-game help.
                 try {
-                    MessageSink sink = s -> sender.sendMessage(ChatColor.RED + s);
+                    MessageSink sink = message -> {
+                        Bukkit.getScheduler().runTask(HelpHelp.this, new Runnable() {
+                            @Override
+                            public void run() {
+                                sender.sendMessage(ChatColor.RED + message);
+                            }
+                        });
+                    };
                     HelpLoader loader = new HelpLoader();
                     loader.loadURI(uri);
 
@@ -135,6 +144,17 @@ public class HelpHelp extends JavaPlugin {
                             reloadHelp(sender);
                         }
                     });
+
+                    // Generate HTML.
+                    File htmlDir = new File(getDataFolder(), "html");
+                    File outputFile = new File(htmlDir, CONFIG.HTML_OUTPUT_FILE);
+                    htmlDir.mkdir();
+                    HTMLHelpRenderer.renderHTML(loader, outputFile,
+                                                loader.substitute(CONFIG.HTML_DEFAULT_TOPIC_TITLE),
+                                                CONFIG.HTML_VISIBLE_PERMISSIONS,
+                                                loader.substitute(CONFIG.HTML_HEADER),
+                                                loader.substitute(CONFIG.HTML_FOOTER));
+
                 } catch (URISyntaxException | MalformedURLException ex) {
                     errorMessage = ChatColor.RED + "Error loading help: malformed URL: " + ex.getMessage();
                 } catch (InvalidConfigurationException ex) {
@@ -142,6 +162,7 @@ public class HelpHelp extends JavaPlugin {
                 } catch (IllegalArgumentException | IOException ex) {
                     errorMessage = ChatColor.RED + "Error loading help: " + ex.getMessage();
                 }
+
                 if (errorMessage != null) {
                     final String finalMessage = errorMessage;
                     Bukkit.getScheduler().runTask(HelpHelp.this, new Runnable() {

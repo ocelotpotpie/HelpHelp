@@ -2,6 +2,7 @@ package nu.nerd.help;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -12,11 +13,6 @@ import org.bukkit.configuration.file.FileConfiguration;
  */
 public class Configuration {
     // ------------------------------------------------------------------------
-    /**
-     * Name of generated HTML output file.
-     */
-    public String OUTPUT_FILE;
-
     /**
      * Minecraft formatting codes for block quotes.
      */
@@ -60,6 +56,32 @@ public class Configuration {
      */
     public ArrayList<TextStyle> HEADING_STYLES = new ArrayList<>();
 
+    /**
+     * Name of generated HTML output file.
+     */
+    public String HTML_OUTPUT_FILE;
+
+    /**
+     * Replacement title of the "Default" index topic.
+     */
+    public String HTML_DEFAULT_TOPIC_TITLE;
+
+    /**
+     * Set of amended permission strings that topic nodes must have to be
+     * visible in the generated HTML (can include the empty string).
+     */
+    public HashSet<String> HTML_VISIBLE_PERMISSIONS = new HashSet<>();
+
+    /**
+     * HTML text to be prepended before any HTML generated from topics.
+     */
+    public String HTML_HEADER;
+
+    /**
+     * HTML text to be appended after any HTML generated from topics.
+     */
+    public String HTML_FOOTER;
+
     // ------------------------------------------------------------------------
     /**
      * Load the plugin configuration.
@@ -68,7 +90,6 @@ public class Configuration {
         HelpHelp.PLUGIN.reloadConfig();
         FileConfiguration config = HelpHelp.PLUGIN.getConfig();
 
-        OUTPUT_FILE = config.getString("output-file");
         QUOTE_STYLE = new TextStyle(config.getString("style.quote"));
         CODE_STYLE = new TextStyle(config.getString("style.code"));
         LINK_STYLE = new TextStyle(config.getString("style.link"));
@@ -85,6 +106,13 @@ public class Configuration {
         for (String style : headingStyles) {
             HEADING_STYLES.add(new TextStyle(style));
         }
+
+        HTML_OUTPUT_FILE = config.getString("html.output-file");
+        HTML_DEFAULT_TOPIC_TITLE = config.getString("html.default-topic-title");
+        HTML_VISIBLE_PERMISSIONS.clear();
+        HTML_VISIBLE_PERMISSIONS.addAll(config.getStringList("html.visible-permissions"));
+        HTML_HEADER = config.getString("html.header");
+        HTML_FOOTER = config.getString("html.footer");
     }
 
     // ------------------------------------------------------------------------

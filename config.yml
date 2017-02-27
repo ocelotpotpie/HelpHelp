@@ -5,8 +5,6 @@ boiler-plate:
     Aliases:
       shortText: '&a<text>.&f'
 
-output-file: index.html
-
 style:
   quote: '&a&o'
   code: '&e&o'
@@ -21,3 +19,19 @@ style:
   - '&a&o'
   - '&6&o'
   - '&d&o'
+
+html:
+  output-file: index.html
+  default-topic-title: Help Topics
+  visible-permissions:
+  - ''
+  - 'bukkit.command.help'
+  header: |
+    <html>
+    <head>
+    <title>${server} Help</title>
+    </head>
+    <body>
+  footer: |
+    </body>
+    </html>

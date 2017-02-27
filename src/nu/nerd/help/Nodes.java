@@ -71,11 +71,23 @@ public class Nodes {
      * null if there is no element to remove.
      * 
      * @param nodes the list of nodes.
-     * @remove the first element from the list of nodes and return it, or return
-     *         null if there is no element to remove.
+     * @return the first element from the list of nodes, or null if there is no
+     *         element to remove.
      */
     public static Node take(List<Node> nodes) {
         return nodes.isEmpty() ? null : nodes.remove(0);
+    }
+
+    // ------------------------------------------------------------------------
+    /**
+     * Return the first element from the list of nodes but do not remove it.
+     * 
+     * @param nodes the list of nodes.
+     * @return the first element from the list of nodes, or null if there is no
+     *         element.
+     */
+    public static Node peek(List<Node> nodes) {
+        return nodes.isEmpty() ? null : nodes.get(0);
     }
 
     // ------------------------------------------------------------------------
@@ -99,7 +111,13 @@ public class Nodes {
     }
 
     // ------------------------------------------------------------------------
-
+    /**
+     * Return the first child of a node with the specified type.
+     *
+     * @param node the parent node.
+     * @param type the Node subclass to look for.
+     * @return the first matching child, or null if not found.
+     */
     public static <T extends Node> T firstChildByType(Node node, Class<T> type) {
         for (Node child = node.getFirstChild(); child != null; child = child.getNext()) {
             if (type.isInstance(child)) {

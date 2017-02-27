@@ -94,6 +94,19 @@ public class HelpLoader {
 
     // ------------------------------------------------------------------------
     /**
+     * Return the result of replacing all variables of the form ${name} with the
+     * corresponding value in a format string.
+     *
+     * @param format the format string.
+     * @return the result of string substitution of all variables returned by
+     *         {@link #getSubstitutions()}.
+     */
+    public String substitute(String format) {
+        return substitute(format, getSubstitutions());
+    }
+
+    // ------------------------------------------------------------------------
+    /**
      * Return the variable-substituted Markdown markup of the index section.
      * 
      * @return the variable-substituted Markdown markup of the index section.

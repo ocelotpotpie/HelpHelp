@@ -150,8 +150,8 @@ public class HelpRenderer {
 
         for (ArrayList<Node> topic : Nodes.getTopicNodes(loader.getTopicSectionNode(), loader.getTopicHeadingLevel())) {
             Node headingNode = Nodes.take(topic);
-            Text text = Nodes.firstChildByType(headingNode, Text.class);
-            String topicName = text.getLiteral();
+            Text title = Nodes.firstChildByType(headingNode, Text.class);
+            String topicName = title.getLiteral();
             ConfigurationSection section = indexTopicsSection.createSection(topicName);
 
             Node node = Nodes.take(topic);
