@@ -10,8 +10,10 @@ formatted text file, loaded from a user-specified URL. When loading this text,
 `HelpHelp` automatically substitutes text variables from the start of the
 file into the body of the text.
 
-A future version (SOON<sup>TM</sup>) of `HelpHelp` will automatically
-generate a web page of the help text.
+`HelpHelp` also generates an HTML version of the help topics to a configurable
+file name in the `html/` subdirectory of the plugin's data folder. The
+generated HTML has a configurable header and footer, and both of these undergo
+variable substitution.
 
 
 Commands
@@ -160,15 +162,28 @@ valid Markdown: http://dillinger.io/. The site also understands the `++`
 syntax for underlined text.
 
 
+Configuration
+-------------
+| Setting | Description |
+| :--- | :--- |
+| `boiler-plate:` | A configuration section containing YAML settings that are copied *verbatim* into `help.yml` prior to any generated help topics being added to that file. |
+| `style.quote` | The Minecraft formatting codes for block quotes. |
+| `style.code` | The Minecraft formatting codes for code blocks. |
+| `style.link` | The Minecraft formatting codes for hyperlinks. |
+| `style.bold` | The Minecraft formatting codes for bold text. |
+| `style.strikethrough` | The Minecraft formatting codes for strikethrough text. |
+| `style.underline` | The Minecraft formatting codes for underlined text. |
+| `style.italics` | The Minecraft formatting codes for italicised text. |
+| `style.headings` | A list of Minecraft formatting codes for headings. The first entry is for H1, then H2, H3, etc.. The list behaves as though it is repeated forever, so if the Markdown code nests headings deeper than the number of styles, subsequent deeper headings will still get a different (if repeated) style. |
+| `html.output-file` | The name of the generated HTML output file. |
+| `html.default-topic-title` | A replacement title for the "Default" index topic. This text is subject to substitution of variables defined in the first section of the Markdown. |
+| `html.visible-permissions` | The set of amended permissions that topic nodes must have to be visible in the generated HTML (can include the empty string). |
+| `html.header` | HTML text to be prepended before any HTML generated from topics. This text is subject to substitution of variables defined in the first section of the Markdown. |
+| `html.footer` | HTML text to be appended after any HTML generated from topics. This text is subject to substitution of variables defined in the first section of the Markdown. |
+
+
 Permissions
 -----------
  * `helphelp.load` - Permission to use `/help-load`.
  * `helphelp.dump` - Permission to use `/help-dump`.
  * `helphelp.reload` - Permission to use `/help-reload`.
-
-
-Configuration
--------------
- * `boiler-plate:` is a configuration section containing YAML settings that
-   are copied *verbatim* into `help.yml` prior to any generated help topics
-   being added to that file.
