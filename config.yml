@@ -22,7 +22,7 @@ style:
 
 html:
   output-file: index.html
-  default-topic-title: Help Topics
+  default-topic-title: Topics
   visible-permissions:
   - ''
   - 'bukkit.command.help'
@@ -32,6 +32,7 @@ html:
     <title>${server} Help</title>
     </head>
     <body>
+    <h1>${server} Help</h1>
   footer: |
     </body>
     </html>
