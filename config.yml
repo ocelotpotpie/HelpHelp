@@ -28,7 +28,7 @@ html:
   - 'bukkit.command.help'
   header: |
     <!DOCTYPE html>
-    <html>
+    <html id="top">
     <head>
     <title>${server} Help</title>
     <link rel="stylesheet" href="style.css">
