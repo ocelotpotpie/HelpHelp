@@ -1,0 +1,146 @@
+* {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  background-image: url('images/stone.png');
+  background-size: 128px 128px;
+  image-rendering: pixelated;
+}
+
+/*
+html:before {
+  content: ' ';
+  display: block;
+  background-image: url('images/stone.png');
+  background-repeat: repeat-x;
+  background-size: 128px 128px;
+  image-rendering: pixelated;
+  padding: 1em 0em;
+  text-align: center;
+  height: 96px;
+  width: 100%;
+}
+*/
+
+h1 {
+  text-align: center;
+}
+
+
+ul {
+  list-style-image: url('images/diamond.png');
+}
+
+nav ul {
+  padding: 1em;
+  column-count: 4;
+  column-gap: 4em;
+}
+
+
+h2 {
+  color: #2463b1;
+}
+h2::before {
+  display: inline-block;
+  content: ' ';
+  background: url('images/diamond_helmet.png') no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  height: 0.8em;
+  width: 0.8em;
+  padding-right: 0.3em;
+}
+
+
+body {  
+  margin: 0;
+  padding: 0;
+
+  font-family: "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+    
+  color: #325050;
+  background-color: #8f8f8f;
+
+  margin: 0 auto;
+  max-width: 50em;
+  padding: 1em 4em;
+}
+
+
+code, pre {
+  color: #ffffff;
+  background-color: #7f7f7f;
+  font-family: monospace;
+  padding: 2pt 4pt;
+  border-radius: 5pt;
+  border: 1px solid #686868;
+}
+
+
+blockquote {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 1em;
+  padding: 1pt 2em;
+  width: 80%;
+  font-size: 120%;
+  background-color: #7f7f7f;
+  box-shadow: 2pt 2pt 4pt #686868;
+  margin-top: 2pt;  
+}
+
+
+a {
+  color: #122aa2; 
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+  text-decoration: none;
+}
+a:visited {
+  color: #1b52a6;
+}
+a:hover, a:focus {
+  color: #2b6c9f;
+  text-decoration: underline;
+}
+  
+  
+h3 {
+  margin: 2em 0 0 0;
+  color: #2463b1;
+  font-family:  sans-serif;
+  font-size: 1.8em;
+  font-weight: normal;
+}
+
+h3::before {
+  display: inline-block;
+  content: ' ';
+  background: url('images/diamond_pickaxe.png') no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  height: 0.8em;
+  width: 0.8em;
+  padding-right: 0.3em;
+}
+
+p {
+  margin: 0.75em 0;
+  line-height: 1.5em;
+}
+
+div.topic span {
+  display: block;
+  text-align: right;
+  width: 100%;
+  content: '^';
+}
+
