@@ -119,17 +119,27 @@ public class HTMLHelpRenderer {
             throw new HTMLGenerationException("The default index topic does not end with a bullet list!");
         }
 
-        // Render the default index topic.
+        // Render the default index topic inside a <nav>
+        html.append("<nav>\n");
         for (Node node : defaultIndexTopic) {
             renderer.render(node, html);
         }
+        html.append("</nav>\n");
+
         // Render those visible topics that were referenced in the index.
+        // Enclosing <div class="topics">, each topic in <div class="topic">.
+        // Also insert a back link to the top.
+        html.append("<div class=\"topics\">\n");
         for (String topicName : referencedTopics) {
+            html.append("<div class=\"topic\">\n");
             ArrayList<Node> topic = visibleTopics.get(topicName);
             for (Node node : topic) {
                 renderer.render(node, html);
             }
+            html.append("<a href=\"#top\"><span>Top</span></a>\n");
+            html.append("</div>\n");
         }
+        html.append("</div>\n");
 
         html.append(footer);
 
