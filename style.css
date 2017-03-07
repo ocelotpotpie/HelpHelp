@@ -45,6 +45,7 @@ nav ul {
 
 h2 {
   color: #2463b1;
+  font-size: 1.9em;
 }
 h2::before {
   display: inline-block;
@@ -65,8 +66,8 @@ body {
   font-family: "Helvetica", "Arial", sans-serif;
   line-height: 1.5;
     
-  color: #325050;
-  background-color: #8f8f8f;
+  color: #233838;
+  background-color: #9a9a9a;
 
   margin: 0 auto;
   max-width: 50em;
@@ -91,8 +92,8 @@ blockquote {
   padding: 1pt 2em;
   width: 80%;
   font-size: 120%;
-  background-color: #7f7f7f;
-  box-shadow: 2pt 2pt 4pt #686868;
+  background-color: #a5a5a5;
+  box-shadow: 2pt 2pt 4pt #727272;
   margin-top: 2pt;  
 }
 
