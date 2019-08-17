@@ -23,6 +23,9 @@ General admin commands:
  * `/help-load <url>` - Load help from a remote Markdown file.
    * Typically this will be a pastebin of some sort.
    * Remember to use the *raw* URL of the text, not the formatted HTML page.
+   * A copy of the file is saved in the plugin's configuration folder as
+     `help.txt`.
+ * `/help-url` - Show the last URL used by `/help-load`.
 
 Technical admin commands:
  * The following commands require access to the `HelpHelp` plugin's data
@@ -166,6 +169,7 @@ Configuration
 -------------
 | Setting | Description |
 | :--- | :--- |
+| `last-url` | Records the last URL loaded by `/help-load`. |
 | `boiler-plate:` | A configuration section containing YAML settings that are copied *verbatim* into `help.yml` prior to any generated help topics being added to that file. |
 | `style.quote` | The Minecraft formatting codes for block quotes. |
 | `style.code` | The Minecraft formatting codes for code blocks. |
@@ -184,6 +188,6 @@ Configuration
 
 Permissions
 -----------
- * `helphelp.load` - Permission to use `/help-load`.
+ * `helphelp.load` - Permission to use `/help-load` and `/help-url`.
  * `helphelp.dump` - Permission to use `/help-dump`.
  * `helphelp.reload` - Permission to use `/help-reload`.

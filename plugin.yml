@@ -38,3 +38,9 @@ commands:
     
       §e/<command> <url>§f - Load help from a remote Markdown file.
 
+  help-url:
+    description: Show the last URL loaded by §e/help-load§f.
+    permission: helphelp.load
+    usage: |
+    
+      §e/<command>§f - Show the last URL loaded by §e/help-load§f.

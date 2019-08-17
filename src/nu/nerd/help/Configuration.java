@@ -14,6 +14,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class Configuration {
     // ------------------------------------------------------------------------
     /**
+     * Last URL loaded by /help-load.
+     */
+    public String LAST_URL;
+
+    /**
      * Minecraft formatting codes for block quotes.
      */
     public TextStyle QUOTE_STYLE = new TextStyle("&a&o");
@@ -68,7 +73,9 @@ public class Configuration {
 
     /**
      * Set of amended permission strings that topic nodes must have to be
-     * visible in the generated HTML (can include the empty string).
+     * visible in the generated HTML. By default, config.yml includes the empty
+     * string in this set so that all nodes with no explicitly set permission
+     * are visible.
      */
     public HashSet<String> HTML_VISIBLE_PERMISSIONS = new HashSet<>();
 
@@ -89,6 +96,8 @@ public class Configuration {
     public void reload() {
         HelpHelp.PLUGIN.reloadConfig();
         FileConfiguration config = HelpHelp.PLUGIN.getConfig();
+
+        LAST_URL = config.getString("last-url");
 
         QUOTE_STYLE = new TextStyle(config.getString("style.quote"));
         CODE_STYLE = new TextStyle(config.getString("style.code"));
@@ -113,6 +122,16 @@ public class Configuration {
         HTML_VISIBLE_PERMISSIONS.addAll(config.getStringList("html.visible-permissions"));
         HTML_HEADER = config.getString("html.header");
         HTML_FOOTER = config.getString("html.footer");
+    }
+
+    // ------------------------------------------------------------------------
+    /**
+     * Save the configuration.
+     */
+    public void save() {
+        FileConfiguration config = HelpHelp.PLUGIN.getConfig();
+        config.set("last-url", LAST_URL);
+        HelpHelp.PLUGIN.saveConfig();
     }
 
     // ------------------------------------------------------------------------

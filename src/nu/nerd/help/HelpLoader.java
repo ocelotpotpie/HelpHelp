@@ -1,8 +1,12 @@
 package nu.nerd.help;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Writer;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -84,6 +88,12 @@ public class HelpLoader {
         Parser parser = createMarkdownParser();
         _indexSectionNode = parser.parse(getIndexSectionMarkup());
         _topicSectionNode = parser.parse(getTopicSectionMarkup());
+
+        // If all was well, save a copy of the text.
+        File helpTextFile = new File(HelpHelp.PLUGIN.getDataFolder(), "help.txt");
+        try (Writer writer = new BufferedWriter(new FileWriter(helpTextFile))) {
+            writer.write(text);
+        }
     }
 
     // ------------------------------------------------------------------------

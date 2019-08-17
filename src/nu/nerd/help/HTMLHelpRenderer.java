@@ -190,6 +190,10 @@ public class HTMLHelpRenderer {
      * @param allTopics a list of all topics extracted from the Markdown.
      * @param visibleTopics a map from unformatted topic name to corresponding
      *        Nodes, with the permission markup removed.
+     * @param visiblePermissions the set of permissions that render a topic
+     *        visible; most topics will not have a permission node set so the
+     *        configuration is pre-configured to include the empty permission
+     *        node string.
      */
     protected static void addVisibleTopics(ArrayList<ArrayList<Node>> allTopics,
                                            HashMap<String, ArrayList<Node>> visibleTopics,

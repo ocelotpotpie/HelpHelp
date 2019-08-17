@@ -54,7 +54,7 @@ public class HelpHelp extends JavaPlugin {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (command.getName().equals("help-dump")) {
+        if (command.getName().equalsIgnoreCase("help-dump")) {
             if (args.length == 0) {
                 dumpTopics(sender);
                 return true;
@@ -62,7 +62,7 @@ public class HelpHelp extends JavaPlugin {
                 return false;
             }
 
-        } else if (command.getName().equals("help-reload")) {
+        } else if (command.getName().equalsIgnoreCase("help-reload")) {
             if (args.length == 0) {
                 reloadHelp(sender);
                 CONFIG.reload();
@@ -70,9 +70,17 @@ public class HelpHelp extends JavaPlugin {
             } else {
                 return false;
             }
-        } else if (command.getName().equals("help-load")) {
+        } else if (command.getName().equalsIgnoreCase("help-load")) {
             if (args.length == 1) {
                 loadHelp(sender, args[0]);
+                return true;
+            } else {
+                return false;
+            }
+        } else if (command.getName().equalsIgnoreCase("help-url")) {
+            if (args.length == 0) {
+                sender.sendMessage(ChatColor.GOLD + "The last help URL loaded was: " +
+                                   ChatColor.AQUA + ChatColor.UNDERLINE + CONFIG.LAST_URL);
                 return true;
             } else {
                 return false;
@@ -113,6 +121,9 @@ public class HelpHelp extends JavaPlugin {
      * @param uri the URI as a string; generally a remote file URL.
      */
     protected void loadHelp(CommandSender sender, String uri) {
+        CONFIG.LAST_URL = uri;
+        CONFIG.save();
+
         Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
             @Override
             public void run() {
