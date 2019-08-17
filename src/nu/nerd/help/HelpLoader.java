@@ -1,6 +1,8 @@
 package nu.nerd.help;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,8 +13,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
-import org.apache.commons.io.IOUtils;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.commonmark.Extension;
@@ -64,8 +66,10 @@ public class HelpLoader {
     IOException, URISyntaxException {
         URI uri = new URI(path);
         URLConnection connection = uri.toURL().openConnection();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String text = reader.lines().collect(Collectors.joining("\n"));
+        reader.close();
 
-        String text = IOUtils.toString(connection.getInputStream());
         String[] sections = text.replace("\r", "").split("\n===+\n");
         if (sections.length != 3) {
             throw new IOException("The input must be divided into 3 sections by === on a line by itself.");
