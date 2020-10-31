@@ -83,6 +83,12 @@ Default Index Topic.
 
 File Format
 -----------
+### Limitations
+Due to a probable in bug the Bukkit chat paginator, URLs in HelpHelp input
+should be at most 48 characters in length. If a help command fails with
+an internal server error, then this is your problem. Use a link shortening
+service.
+
 ### Sections
 The file is divided into three sections, separated by three or more `=` 
 characters at the start of a line, on their own.
